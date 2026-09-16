@@ -1,0 +1,78 @@
+#Numerisk beregning og plotting av de fysiske størrelsene v(x), N(x), f(x), |f/N|, v(t), Epot(x), Ekin(x), Etot(x)
+
+# Tid
+v_x = v * np.cos(beta)
+t = []
+for i in range(1, Nx):
+    t.append(2*dx/(v_x[i-1] + v_x[i]))
+delta_t = np.array(t)
+
+t = [0]
+for i in range(len(delta_t)):
+    t.append(t[i]+delta_t[i])
+
+t = np.array(t)
+print(t, delta_t)
+
+# Hastighet basert på x
+v = np.sqrt((10*g)*(y[0]-y)/7)
+
+# Normal Kraft
+N = M * g * np.cos(beta) + M * v**2 * K 
+
+# Friksjonskraft
+f = (2 * M * g * np.sin(beta))/7
+
+# Forhold 
+fN_forhold = f/N
+
+# E potensiell 
+epot = M * g * y
+
+# E kinetisk
+ekin = 0.5 * (1 + c) * M * v**2
+
+# E total
+etot = ekin + epot
+
+plt.figure(figsize=(15,4))
+plt.plot(x,v)
+plt.title('Hastighet',fontsize=20)
+plt.grid()
+plt.show()
+
+plt.figure(figsize=(15,4))
+plt.plot(x,N)
+plt.title('Normal kraft',fontsize=20)
+plt.grid()
+plt.show()
+
+plt.figure(figsize=(15,4))
+plt.plot(x,f)
+plt.title('Friksjonskraft',fontsize=20)
+plt.grid()
+plt.show()
+
+plt.figure(figsize=(15,4))
+plt.plot(x,fN_forhold)
+plt.title('Froholdet mellom f og N',fontsize=20)
+plt.grid()
+plt.show()
+
+plt.figure(figsize=(15,4))
+plt.plot(t,v)
+plt.title('Fart basert på tid',fontsize=20)
+plt.grid()
+plt.show()
+
+plt.figure(figsize=(20,4))
+plt.plot(x, epot)
+plt.plot(x, ekin)
+plt.plot(x, etot)
+plt.xlabel('$x$ (m)', fontsize=20)
+plt.ylabel('$y$ (m)', fontsize=20)
+plt.title('Energi',fontsize=20)
+plt.grid()
+plt.show()
+
+#Utskrift av rulletid, sluttfart, total mekanisk energi
