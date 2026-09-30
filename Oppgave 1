@@ -1,5 +1,8 @@
 #Numerisk beregning og plotting av de fysiske størrelsene v(x), N(x), f(x), |f/N|, v(t), Epot(x), Ekin(x), Etot(x)
 
+# Hastighet basert på x
+v = np.sqrt((10*g)*(y[0]-y)/7)
+
 # Tid
 v_x = v * np.cos(beta)
 t = []
@@ -13,9 +16,6 @@ for i in range(len(delta_t)):
 
 t = np.array(t)
 print(t, delta_t)
-
-# Hastighet basert på x
-v = np.sqrt((10*g)*(y[0]-y)/7)
 
 # Normal Kraft
 N = M * g * np.cos(beta) + M * v**2 * K 
